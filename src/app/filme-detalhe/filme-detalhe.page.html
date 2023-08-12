@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{filme.nome}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-card *ngIf="filme">
+
+    <ion-card-content>
+      <h1>{{filme.nome}} <ion-icon name="star" [color]="filme.favorito===true ? 'warning' : ('light')"></ion-icon></h1>
+      <p>{{filme.descricao}}</p>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

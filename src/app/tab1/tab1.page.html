@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title>
+      Tecnologias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list *ngIf="listaFilmes">
+    <h1>Lista de tecnologias mais importantes em 2023: </h1>
+
+    <ion-item-sliding *ngFor="let filme of listaFilmes">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
+
+
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>{{filme.nome}}</h1>
+            <ion-icon name="star" [color]="filme.favorito===true ? 'warning' : ('medium')"></ion-icon>
+          </div>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="exibirAlertaFavorito(filme)">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

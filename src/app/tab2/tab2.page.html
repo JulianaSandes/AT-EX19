@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title>
+      Apps
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list *ngIf="listaSeries">
+    <h1>Lista dos principais aplicativos relacionados as tecnologias: </h1>
+
+    <ion-item-sliding *ngFor="let serie of listaSeries">
+      <ion-item lines="full" (click)="exibirSerie(serie)">
+
+        <ion-thumbnail slot="start">
+          <img *ngIf="serie.cartaz" src="{{serie.cartaz}}" />
+          <ion-icon *ngIf="!serie.cartaz" name="videocam-off"></ion-icon>
+        </ion-thumbnail>
+
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>{{serie.nome}}</h1>
+            <p>{{serie.lancamento}}</p>
+            <ion-badge color="tertiary" *ngFor="let genero of serie.generos">
+              {{genero}}
+            </ion-badge>
+            <ion-icon name="star" [color]="serie.favorito===true ? 'warning' : ('medium')"></ion-icon>
+          </div>
+        </ion-label>
+
+        <ion-chip [color]="serie.classificacao < 5 ? 'danger' : ((serie.classificacao < 7 ? 'warning' : 'success'))"
+          outline>
+          <ion-label>{{serie.classificacao}}</ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="exibirAlertaFavorito(serie)">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
